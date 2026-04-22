@@ -1,8 +1,8 @@
-C:\Users\hanam\OneDrive\Desktop\External Audit Coordinator\backend\src\main\java\com\internship\tool\entity\AuditItem.java
-C:\Users\hanam\OneDrive\Desktop\External Audit Coordinator\backend\src\main\java\com\internship\tool\service\AuditItemService.java
-C:\Users\hanam\OneDrive\Desktop\External Audit Coordinator\backend\src\main\java\com\internship\tool\Application.java
-C:\Users\hanam\OneDrive\Desktop\External Audit Coordinator\backend\src\main\java\com\internship\tool\dto\CreateAuditItemRequest.java
-C:\Users\hanam\OneDrive\Desktop\External Audit Coordinator\backend\src\main\java\com\internship\tool\exception\GlobalExceptionHandler.java
-C:\Users\hanam\OneDrive\Desktop\External Audit Coordinator\backend\src\main\java\com\internship\tool\dto\AuditItemDTO.java
-C:\Users\hanam\OneDrive\Desktop\External Audit Coordinator\backend\src\main\java\com\internship\tool\repository\AuditItemRepository.java
-C:\Users\hanam\OneDrive\Desktop\External Audit Coordinator\backend\src\main\java\com\internship\tool\controller\AuditItemController.java
+C:\Users\hanam\OneDrive\Desktop\fs-java-internship\external-audit-coordinator\backend\src\main\java\com\internship\tool\entity\AuditItem.java
+C:\Users\hanam\OneDrive\Desktop\fs-java-internship\external-audit-coordinator\backend\src\main\java\com\internship\tool\Application.java
+C:\Users\hanam\OneDrive\Desktop\fs-java-internship\external-audit-coordinator\backend\src\main\java\com\internship\tool\dto\CreateAuditItemRequest.java
+C:\Users\hanam\OneDrive\Desktop\fs-java-internship\external-audit-coordinator\backend\src\main\java\com\internship\tool\dto\AuditItemDTO.java
+C:\Users\hanam\OneDrive\Desktop\fs-java-internship\external-audit-coordinator\backend\src\main\java\com\internship\tool\exception\GlobalExceptionHandler.java
+C:\Users\hanam\OneDrive\Desktop\fs-java-internship\external-audit-coordinator\backend\src\main\java\com\internship\tool\repository\AuditItemRepository.java
+C:\Users\hanam\OneDrive\Desktop\fs-java-internship\external-audit-coordinator\backend\src\main\java\com\internship\tool\service\AuditItemService.java
+C:\Users\hanam\OneDrive\Desktop\fs-java-internship\external-audit-coordinator\backend\src\main\java\com\internship\tool\controller\AuditItemController.java
