@@ -45,6 +45,17 @@ This project is part of an AI-based External Audit System. The goal is to build 
 - Tested retrieval using `test_chroma.py`
 
 ---
+### ✅ Day 5 – Query API with RAG Pipeline
+- Built POST `/query` endpoint
+- Accepted user questions through API
+- Retrieved top 3 relevant chunks from ChromaDB
+- Injected retrieved chunks as context
+- Integrated Groq LLM for answer generation
+- Returned JSON response with:
+  - `answer`
+  - `sources`
+- Fixed persistent ChromaDB storage using `PersistentClient`
+- Tested end-to-end flow using Postman
 
 ## 🧠 Features
 - Text classification into categories
