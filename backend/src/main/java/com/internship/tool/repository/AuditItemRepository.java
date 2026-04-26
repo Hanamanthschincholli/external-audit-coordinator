@@ -22,12 +22,12 @@ public interface AuditItemRepository extends JpaRepository<AuditItem, UUID> {
     Page<AuditItem> findAllActive(Pageable pageable);
 
     @Query("SELECT a FROM AuditItem a WHERE a.isDeleted = false AND a.status = :status")
-    Page<AuditItem> findByStatus(@Param("status") String status, Pageable pageable);
+    Page<AuditItem> findActiveByStatus(@Param("status") String status, Pageable pageable);
+   
 
     @Transactional
     @Modifying
     @Query("UPDATE AuditItem a SET a.isDeleted = true WHERE a.id = :id")
     void softDeleteById(@Param("id") UUID id);
 
-    Page<AuditItem> findByStatus(String status, Pageable pageable);
 }

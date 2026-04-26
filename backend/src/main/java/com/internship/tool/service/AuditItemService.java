@@ -4,7 +4,7 @@ import com.internship.tool.dto.AuditItemDTO;
 import com.internship.tool.dto.CreateAuditItemRequest;
 import com.internship.tool.entity.AuditItem;
 import com.internship.tool.repository.AuditItemRepository;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -15,10 +15,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 @Service
-@RequiredArgsConstructor
 public class AuditItemService {
 
     private final AuditItemRepository auditItemRepository;
+
+    @Autowired
+    public AuditItemService(AuditItemRepository auditItemRepository) {
+        this.auditItemRepository = auditItemRepository;
+    }
 
     public AuditItemDTO createAuditItem(CreateAuditItemRequest request, String createdBy) {
         AuditItem item = new AuditItem();
@@ -76,7 +80,7 @@ public class AuditItemService {
     }
 
     public Page<AuditItemDTO> getByStatus(String status, Pageable pageable) {
-        return auditItemRepository.findByStatus(status, pageable)
+        return auditItemRepository.findActiveByStatus(status, pageable)
                 .map(this::mapToDTO);
     }
 
