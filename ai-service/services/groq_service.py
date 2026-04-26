@@ -31,4 +31,10 @@ def get_groq_response(prompt: str, context: str = "") -> str:
         )
         return chat_completion.choices[0].message.content
     except Exception as e:
-        raise Exception(f"Failed to generate response from Groq: {str(e)}")
+        print(f"Error calling Groq API: {str(e)}")
+        import json
+        return json.dumps({
+            "is_fallback": True,
+            "message": "The AI service is currently unavailable. Please try again later.",
+            "error": str(e)
+        })
