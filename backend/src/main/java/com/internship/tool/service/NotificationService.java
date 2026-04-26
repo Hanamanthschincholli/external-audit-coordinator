@@ -30,6 +30,11 @@ public class NotificationService {
     }
 
     @Transactional(readOnly = true)
+    public org.springframework.data.domain.Page<Notification> getAllNotifications(org.springframework.data.domain.Pageable pageable) {
+        return notificationRepository.findAll(pageable);
+    }
+
+    @Transactional(readOnly = true)
     public List<Notification> getUnreadNotifications(Long userId) {
         return notificationRepository.findByRecipientIdAndIsReadFalseOrderByCreatedAtDesc(userId);
     }

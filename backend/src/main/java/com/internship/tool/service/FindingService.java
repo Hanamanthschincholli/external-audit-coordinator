@@ -32,6 +32,11 @@ public class FindingService {
         return findingRepository.findByAuditProgramId(programId);
     }
 
+    @Transactional(readOnly = true)
+    public org.springframework.data.domain.Page<Finding> getAllFindings(org.springframework.data.domain.Pageable pageable) {
+        return findingRepository.findAll(pageable);
+    }
+
     @Transactional
     public Finding createFinding(Long programId, Long raisedById, Finding finding) {
         AuditProgram program = auditProgramService.getProgramById(programId);

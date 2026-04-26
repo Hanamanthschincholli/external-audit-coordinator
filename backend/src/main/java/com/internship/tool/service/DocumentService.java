@@ -34,6 +34,11 @@ public class DocumentService {
     }
 
     @Transactional(readOnly = true)
+    public org.springframework.data.domain.Page<Document> getAllDocuments(org.springframework.data.domain.Pageable pageable) {
+        return documentRepository.findAll(pageable);
+    }
+
+    @Transactional(readOnly = true)
     public List<Document> getDocumentsByTaskId(Long taskId) {
         return documentRepository.findByAuditTaskId(taskId);
     }
