@@ -35,6 +35,11 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
+    public org.springframework.data.domain.Page<User> getAllUsers(org.springframework.data.domain.Pageable pageable) {
+        return userRepository.findAll(pageable);
+    }
+
+    @Transactional(readOnly = true)
     public List<User> getUsersByRole(Role role) {
         return userRepository.findByRole(role);
     }

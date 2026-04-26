@@ -33,6 +33,11 @@ public class AuditTaskService {
     }
 
     @Transactional(readOnly = true)
+    public org.springframework.data.domain.Page<AuditTask> getAllTasks(org.springframework.data.domain.Pageable pageable) {
+        return auditTaskRepository.findAll(pageable);
+    }
+
+    @Transactional(readOnly = true)
     public List<AuditTask> getTasksByAssigneeId(Long assigneeId) {
         return auditTaskRepository.findByAssignedToId(assigneeId);
     }

@@ -34,6 +34,11 @@ public class AuditProgramService {
     }
 
     @Transactional(readOnly = true)
+    public org.springframework.data.domain.Page<AuditProgram> getAllPrograms(org.springframework.data.domain.Pageable pageable) {
+        return auditProgramRepository.findAll(pageable);
+    }
+
+    @Transactional(readOnly = true)
     public List<AuditProgram> getProgramsByLeadAuditor(Long leadAuditorId) {
         return auditProgramRepository.findByLeadAuditorId(leadAuditorId);
     }
