@@ -11,8 +11,20 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestControllerAdvice
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
+
+@ControllerAdvice
 public class GlobalExceptionHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
@@ -82,6 +94,7 @@ public class GlobalExceptionHandler {
 
     // ✅ 400 - runtime (business errors only)
     @ExceptionHandler(RuntimeException.class)
+
     public ResponseEntity<ErrorResponse> handleRuntimeException(RuntimeException ex) {
 
         logger.error("Runtime exception: {}", ex.getMessage());
@@ -90,6 +103,14 @@ public class GlobalExceptionHandler {
                 new ErrorResponse(ex.getMessage(), HttpStatus.BAD_REQUEST.value(), LocalDateTime.now()),
                 HttpStatus.BAD_REQUEST
         );
+    public ResponseEntity<Map<String, Object>> handleRuntimeException(RuntimeException ex) {
+
+        Map<String, Object> error = new HashMap<>();
+        error.put("status", HttpStatus.BAD_REQUEST.value());
+        error.put("message", ex.getMessage());
+        error.put("timestamp", LocalDateTime.now());
+
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
     // ✅ 500 - generic
@@ -106,5 +127,13 @@ public class GlobalExceptionHandler {
                 ),
                 HttpStatus.INTERNAL_SERVER_ERROR
         );
+    public ResponseEntity<Map<String, Object>> handleGenericException(Exception ex) {
+
+        Map<String, Object> error = new HashMap<>();
+        error.put("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
+        error.put("message", "Something went wrong");
+        error.put("timestamp", LocalDateTime.now());
+
+        return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

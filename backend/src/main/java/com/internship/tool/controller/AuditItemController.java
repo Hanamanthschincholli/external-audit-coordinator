@@ -16,12 +16,17 @@ import org.springframework.web.bind.annotation.*;
 import com.internship.tool.dto.AuditItemDTO;
 import com.internship.tool.dto.CreateAuditItemRequest;
 import com.internship.tool.service.AuditItemService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/audit-items")
-@Tag(name = "Audit Items", description = "Manage audit items (create, update, delete, search)")
+@RequiredArgsConstructor
 public class AuditItemController {
 
     private final AuditItemService auditItemService;
@@ -31,16 +36,9 @@ public class AuditItemController {
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('USER')")
-    @Operation(summary = "Create a new audit item")
-    public ResponseEntity<AuditItemDTO> createAuditItem(
-            @Valid @RequestBody CreateAuditItemRequest request,
-            @Parameter(description = "User ID of creator")
-            @RequestHeader("X-User-Id") String userIdStr) {
-
-        UUID userId = UUID.fromString(userIdStr);
-        return ResponseEntity.ok(
-                auditItemService.createAuditItem(request, userId));
+    public ResponseEntity<AuditItemDTO> createAuditItem(@RequestBody CreateAuditItemRequest request, @RequestHeader("X-User-Id") String userId) {
+        AuditItemDTO created = auditItemService.createAuditItem(request, userId);
+        return ResponseEntity.ok(created);
     }
 
     @GetMapping
@@ -103,18 +101,9 @@ public class AuditItemController {
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN','USER')")
-    @Operation(summary = "Update audit item")
-    public ResponseEntity<AuditItemDTO> updateAuditItem(
-            @Parameter(description = "Audit item ID")
-            @PathVariable UUID id,
-            @Valid @RequestBody CreateAuditItemRequest request,
-            @Parameter(description = "User ID of updater")
-            @RequestHeader("X-User-Id") String userIdStr) {
-
-        UUID userId = UUID.fromString(userIdStr);
-        return ResponseEntity.ok(
-                auditItemService.updateAuditItem(id, request, userId));
+    public ResponseEntity<AuditItemDTO> updateAuditItem(@PathVariable UUID id, @RequestBody CreateAuditItemRequest request, @RequestHeader("X-User-Id") String userId) {
+        AuditItemDTO updated = auditItemService.updateAuditItem(id, request, userId);
+        return ResponseEntity.ok(updated);
     }
 
     @DeleteMapping("/{id}")

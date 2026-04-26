@@ -1,5 +1,9 @@
 package com.internship.tool.entity;
 
+<<<<<<< HEAD
+=======
+import jakarta.persistence.*;
+>>>>>>> 657095f (Added AuditItem CRUD with validation, filtering, and pagination)
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -18,22 +22,27 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
+<<<<<<< HEAD
 @Table(name = "audit_items")
 @EntityListeners(AuditingEntityListener.class)
+=======
+>>>>>>> 657095f (Added AuditItem CRUD with validation, filtering, and pagination)
 public class AuditItem {
 
     @Id
     @GeneratedValue
+<<<<<<< HEAD
     @UuidGenerator
+=======
+>>>>>>> 657095f (Added AuditItem CRUD with validation, filtering, and pagination)
     private UUID id;
 
     private String title;
     private String description;
     private String status;
     private String priority;
-
-    @Column(name = "due_date")
     private LocalDate dueDate;
+<<<<<<< HEAD
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "created_by", nullable = false)
@@ -88,3 +97,101 @@ public class AuditItem {
     public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
 }
 
+=======
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+    private String createdBy;
+    private String assignedTo;
+    private boolean isDeleted;
+
+    // ===== GETTERS & SETTERS =====
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
+
+    public LocalDate getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getAssignedTo() {
+        return assignedTo;
+    }
+
+    public void setAssignedTo(String assignedTo) {
+        this.assignedTo = assignedTo;
+    }
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.isDeleted = deleted;
+    }
+}
+>>>>>>> 657095f (Added AuditItem CRUD with validation, filtering, and pagination)

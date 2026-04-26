@@ -1,5 +1,4 @@
-package com.internship.tool.service;
-
+package com.internship.tool.service
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
@@ -9,6 +8,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import com.internship.tool.dto.AuditItemDTO;
+import com.internship.tool.dto.CreateAuditItemRequest;
+import com.internship.tool.entity.AuditItem;
+import com.internship.tool.repository.AuditItemRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -40,6 +44,12 @@ public class AuditItemService {
         User createdUser = userService.getUserById(createdById);
         User assignedUser = request.getAssignedTo() != null ? userService.getUserById(request.getAssignedTo()) : null;
 
+    @Autowired
+    public AuditItemService(AuditItemRepository auditItemRepository) {
+        this.auditItemRepository = auditItemRepository;
+    }
+
+    public AuditItemDTO createAuditItem(CreateAuditItemRequest request, String createdBy) {
         AuditItem item = new AuditItem();
         item.setTitle(request.getTitle());
         item.setDescription(request.getDescription());
@@ -121,7 +131,11 @@ public class AuditItemService {
     }
 
     public Page<AuditItemDTO> getByStatus(String status, Pageable pageable) {
+
         logger.info("Fetching audit items by status: {}", status);
+        return auditItemRepository.findActiveByStatus(status, pageable)
+                .map(this::mapToDTO);
+    }
 
         return auditItemRepository.findActiveByStatus(status, pageable)
                 .map(AuditItemMapper::toDTO);

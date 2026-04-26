@@ -20,8 +20,14 @@ public interface AuditItemRepository extends JpaRepository<AuditItem, UUID> {
     @Query("SELECT a FROM AuditItem a WHERE a.deleted = false")
     Page<AuditItem> findAllActive(Pageable pageable);
 
+<<<<<<< HEAD
     @Query("SELECT a FROM AuditItem a WHERE a.deleted = false AND a.status = :status")
     Page<AuditItem> findActiveByStatus(@Param("status") String status, Pageable pageable);
+=======
+    @Query("SELECT a FROM AuditItem a WHERE a.isDeleted = false AND a.status = :status")
+    Page<AuditItem> findActiveByStatus(@Param("status") String status, Pageable pageable);
+   
+>>>>>>> 657095f (Added AuditItem CRUD with validation, filtering, and pagination)
 
     // ✅ Fixed here also
     @Query("SELECT a FROM AuditItem a WHERE a.deleted = false " +
@@ -41,4 +47,9 @@ public interface AuditItemRepository extends JpaRepository<AuditItem, UUID> {
     @Modifying
     @Query("UPDATE AuditItem a SET a.deleted = true WHERE a.id = :id")
     void softDeleteById(@Param("id") UUID id);
+<<<<<<< HEAD
 }
+=======
+
+}
+>>>>>>> 657095f (Added AuditItem CRUD with validation, filtering, and pagination)
