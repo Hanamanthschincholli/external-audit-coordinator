@@ -1,13 +1,17 @@
 package com.internship.tool.entity;
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 =======
 import jakarta.persistence.*;
 >>>>>>> 657095f (Added AuditItem CRUD with validation, filtering, and pagination)
+=======
+>>>>>>> 71524aa (Implement JWT authentication and role-based access control)
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+<<<<<<< HEAD
 import org.hibernate.annotations.UuidGenerator;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -20,6 +24,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+=======
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+>>>>>>> 71524aa (Implement JWT authentication and role-based access control)
 
 @Entity
 <<<<<<< HEAD
@@ -42,6 +54,7 @@ public class AuditItem {
     private String status;
     private String priority;
     private LocalDate dueDate;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -98,7 +111,12 @@ public class AuditItem {
 }
 
 =======
+=======
+    @CreationTimestamp
+>>>>>>> 71524aa (Implement JWT authentication and role-based access control)
     private LocalDateTime createdAt;
+
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
     private String createdBy;
     private String assignedTo;
