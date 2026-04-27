@@ -57,6 +57,15 @@ This project is part of an AI-based External Audit System. The goal is to build 
 - Fixed persistent ChromaDB storage using `PersistentClient`
 - Tested end-to-end flow using Postman
 
+
+### ✅ Day 6 – Prompt Tuning & Evaluation
+- Tested prompts against 10 real user inputs
+- Evaluated responses based on accuracy and output format
+- Identified weak responses below 7/10
+- Rewrote prompt instructions in `query.py` to enforce strict context-only answers
+- Re-tested tuned prompts and compared before vs after results
+- Saved evaluation report in `reports/Day6_Prompt_Tuning_Report.xlsx`
+
 ## 🧠 Features
 - Text classification into categories
 - AI-generated responses

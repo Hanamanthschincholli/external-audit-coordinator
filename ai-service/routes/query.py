@@ -24,13 +24,21 @@ def query():
     context = "\n".join(sources)
 
     prompt = f"""
+You are an AI assistant for external audit support.
+
+Answer ONLY using the provided context.
+Do not assume, guess, or speculate beyond the context.
+
+If the answer is not clearly available in the context, respond with:
+'Insufficient information available in the provided context.'
+
+Provide a direct, concise, and accurate answer.
+
 Context:
 {context}
 
 Question:
 {question}
-
-Answer based only on the given context.
 """
 
     # Generate answer from Groq
