@@ -1,9 +1,14 @@
 package com.internship.tool.entity;
-
-import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
 @Entity
 public class AuditItem {
@@ -17,7 +22,10 @@ public class AuditItem {
     private String status;
     private String priority;
     private LocalDate dueDate;
+    @CreationTimestamp
     private LocalDateTime createdAt;
+
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
     private String createdBy;
     private String assignedTo;
