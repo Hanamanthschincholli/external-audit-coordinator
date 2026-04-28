@@ -23,6 +23,7 @@ public class DocumentService {
     private final UserService userService;
 
     @Transactional(readOnly = true)
+    @org.springframework.cache.annotation.Cacheable(value = "documents", key = "#id")
     public Document getDocumentById(Long id) {
         return documentRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Document", "id", id));
@@ -44,6 +45,7 @@ public class DocumentService {
     }
 
     @Transactional
+    @org.springframework.cache.annotation.CacheEvict(value = {"documents", "documentsList", "documentsPaginated"}, allEntries = true)
     public Document uploadDocument(Document document, Long uploaderId, Long programId, Long taskId) {
         if (programId == null && taskId == null) {
             throw new ValidationException("Document must be associated with either an AuditProgram or an AuditTask.");
@@ -70,6 +72,7 @@ public class DocumentService {
     }
 
     @Transactional
+    @org.springframework.cache.annotation.CacheEvict(value = {"documents", "documentsList", "documentsPaginated"}, allEntries = true)
     public Document updateDocumentMetadata(Long id, Document documentDetails) {
         Document document = getDocumentById(id);
         
@@ -81,6 +84,7 @@ public class DocumentService {
     }
 
     @Transactional
+    @org.springframework.cache.annotation.CacheEvict(value = {"documents", "documentsList", "documentsPaginated"}, allEntries = true)
     public void deleteDocument(Long id) {
         Document document = getDocumentById(id);
         // Note: In a real-world app, you'd also need to delete the physical file from the storage (e.g. S3 or local FS)

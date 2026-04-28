@@ -19,6 +19,7 @@ public class NotificationService {
     private final UserService userService;
 
     @Transactional(readOnly = true)
+    @org.springframework.cache.annotation.Cacheable(value = "notifications", key = "#id")
     public Notification getNotificationById(Long id) {
         return notificationRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Notification", "id", id));
@@ -45,6 +46,7 @@ public class NotificationService {
     }
 
     @Transactional
+    @org.springframework.cache.annotation.CacheEvict(value = {"notifications", "notificationsList", "notificationsPaginated", "unreadCount"}, allEntries = true)
     public Notification createNotification(Long recipientId, Long senderId, Notification notification) {
         User recipient = userService.getUserById(recipientId);
         notification.setRecipient(recipient);
@@ -58,6 +60,7 @@ public class NotificationService {
     }
 
     @Transactional
+    @org.springframework.cache.annotation.CacheEvict(value = {"notifications", "notificationsList", "notificationsPaginated", "unreadCount"}, allEntries = true)
     public Notification markAsRead(Long id) {
         Notification notification = getNotificationById(id);
         if (!notification.getIsRead()) {
@@ -68,11 +71,13 @@ public class NotificationService {
     }
 
     @Transactional
+    @org.springframework.cache.annotation.CacheEvict(value = {"notifications", "notificationsList", "notificationsPaginated", "unreadCount"}, allEntries = true)
     public int markAllAsReadForUser(Long userId) {
         return notificationRepository.markAllAsRead(userId);
     }
 
     @Transactional
+    @org.springframework.cache.annotation.CacheEvict(value = {"notifications", "notificationsList", "notificationsPaginated", "unreadCount"}, allEntries = true)
     public void deleteNotification(Long id) {
         Notification notification = getNotificationById(id);
         notificationRepository.delete(notification);

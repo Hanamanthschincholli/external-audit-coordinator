@@ -23,6 +23,7 @@ public class AuditProgramService {
     private final UserService userService;
 
     @Transactional(readOnly = true)
+    @org.springframework.cache.annotation.Cacheable(value = "programs", key = "#id")
     public AuditProgram getProgramById(Long id) {
         return auditProgramRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("AuditProgram", "id", id));
@@ -44,6 +45,7 @@ public class AuditProgramService {
     }
 
     @Transactional
+    @org.springframework.cache.annotation.CacheEvict(value = {"programs", "programsList", "programsPaginated"}, allEntries = true)
     public AuditProgram createProgram(AuditProgram program, Long leadAuditorId) {
         validateDates(program.getPlannedStartDate(), program.getPlannedEndDate());
         
@@ -61,6 +63,7 @@ public class AuditProgramService {
     }
 
     @Transactional
+    @org.springframework.cache.annotation.CacheEvict(value = {"programs", "programsList", "programsPaginated"}, allEntries = true)
     public AuditProgram updateProgram(Long id, AuditProgram programDetails) {
         AuditProgram program = getProgramById(id);
 
@@ -81,6 +84,7 @@ public class AuditProgramService {
     }
 
     @Transactional
+    @org.springframework.cache.annotation.CacheEvict(value = {"programs", "programsList", "programsPaginated"}, allEntries = true)
     public AuditProgram updateProgramStatus(Long id, AuditStatus newStatus) {
         AuditProgram program = getProgramById(id);
         
@@ -95,6 +99,7 @@ public class AuditProgramService {
     }
 
     @Transactional
+    @org.springframework.cache.annotation.CacheEvict(value = {"programs", "programsList", "programsPaginated"}, allEntries = true)
     public void deleteProgram(Long id) {
         AuditProgram program = getProgramById(id);
         auditProgramRepository.delete(program);

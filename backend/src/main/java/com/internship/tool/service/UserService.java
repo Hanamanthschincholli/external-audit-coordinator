@@ -18,12 +18,14 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Transactional(readOnly = true)
+    @org.springframework.cache.annotation.Cacheable(value = "users", key = "#id")
     public User getUserById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
     }
 
     @Transactional(readOnly = true)
+    @org.springframework.cache.annotation.Cacheable(value = "usersByEmail", key = "#email")
     public User getUserByEmail(String email) {
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "email", email));
@@ -45,6 +47,7 @@ public class UserService {
     }
 
     @Transactional
+    @org.springframework.cache.annotation.CacheEvict(value = {"users", "usersByEmail", "allUsers"}, allEntries = true)
     public User createUser(User user) {
         if (userRepository.existsByEmail(user.getEmail())) {
             throw new DuplicateResourceException("Email already exists: " + user.getEmail());
@@ -54,6 +57,7 @@ public class UserService {
     }
 
     @Transactional
+    @org.springframework.cache.annotation.CacheEvict(value = {"users", "usersByEmail", "allUsers"}, allEntries = true)
     public User updateUser(Long id, User userDetails) {
         User user = getUserById(id);
 
@@ -72,6 +76,7 @@ public class UserService {
     }
 
     @Transactional
+    @org.springframework.cache.annotation.CacheEvict(value = {"users", "usersByEmail", "allUsers"}, allEntries = true)
     public void deleteUser(Long id) {
         User user = getUserById(id);
         // Instead of hard delete, perform a soft delete to maintain foreign key integrity

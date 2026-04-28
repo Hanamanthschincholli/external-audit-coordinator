@@ -22,6 +22,7 @@ public class FindingService {
     private final UserService userService;
 
     @Transactional(readOnly = true)
+    @org.springframework.cache.annotation.Cacheable(value = "findings", key = "#id")
     public Finding getFindingById(Long id) {
         return findingRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Finding", "id", id));
@@ -38,6 +39,7 @@ public class FindingService {
     }
 
     @Transactional
+    @org.springframework.cache.annotation.CacheEvict(value = {"findings", "findingsList", "findingsPaginated"}, allEntries = true)
     public Finding createFinding(Long programId, Long raisedById, Finding finding) {
         AuditProgram program = auditProgramService.getProgramById(programId);
         User raisedBy = userService.getUserById(raisedById);
@@ -53,6 +55,7 @@ public class FindingService {
     }
 
     @Transactional
+    @org.springframework.cache.annotation.CacheEvict(value = {"findings", "findingsList", "findingsPaginated"}, allEntries = true)
     public Finding updateFinding(Long id, Finding findingDetails) {
         Finding finding = getFindingById(id);
 
@@ -68,6 +71,7 @@ public class FindingService {
     }
 
     @Transactional
+    @org.springframework.cache.annotation.CacheEvict(value = {"findings", "findingsList", "findingsPaginated"}, allEntries = true)
     public Finding resolveFinding(Long id) {
         Finding finding = getFindingById(id);
         finding.setIsResolved(true);
@@ -76,6 +80,7 @@ public class FindingService {
     }
 
     @Transactional
+    @org.springframework.cache.annotation.CacheEvict(value = {"findings", "findingsList", "findingsPaginated"}, allEntries = true)
     public Finding assignOwner(Long findingId, Long ownerId) {
         Finding finding = getFindingById(findingId);
         User owner = userService.getUserById(ownerId);
@@ -84,6 +89,7 @@ public class FindingService {
     }
 
     @Transactional
+    @org.springframework.cache.annotation.CacheEvict(value = {"findings", "findingsList", "findingsPaginated"}, allEntries = true)
     public void deleteFinding(Long id) {
         Finding finding = getFindingById(id);
         findingRepository.delete(finding);

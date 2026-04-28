@@ -22,6 +22,7 @@ public class AuditTaskService {
     private final UserService userService;
 
     @Transactional(readOnly = true)
+    @org.springframework.cache.annotation.Cacheable(value = "tasks", key = "#id")
     public AuditTask getTaskById(Long id) {
         return auditTaskRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("AuditTask", "id", id));
@@ -43,6 +44,7 @@ public class AuditTaskService {
     }
 
     @Transactional
+    @org.springframework.cache.annotation.CacheEvict(value = {"tasks", "tasksList", "tasksPaginated"}, allEntries = true)
     public AuditTask createTask(Long programId, Long assigneeId, AuditTask task) {
         AuditProgram program = auditProgramService.getProgramById(programId);
         task.setAuditProgram(program);
@@ -60,6 +62,7 @@ public class AuditTaskService {
     }
 
     @Transactional
+    @org.springframework.cache.annotation.CacheEvict(value = {"tasks", "tasksList", "tasksPaginated"}, allEntries = true)
     public AuditTask updateTask(Long id, AuditTask taskDetails) {
         AuditTask task = getTaskById(id);
 
@@ -73,6 +76,7 @@ public class AuditTaskService {
     }
 
     @Transactional
+    @org.springframework.cache.annotation.CacheEvict(value = {"tasks", "tasksList", "tasksPaginated"}, allEntries = true)
     public AuditTask updateTaskStatus(Long id, AuditStatus newStatus) {
         AuditTask task = getTaskById(id);
         
@@ -85,6 +89,7 @@ public class AuditTaskService {
     }
 
     @Transactional
+    @org.springframework.cache.annotation.CacheEvict(value = {"tasks", "tasksList", "tasksPaginated"}, allEntries = true)
     public AuditTask assignTask(Long taskId, Long assigneeId) {
         AuditTask task = getTaskById(taskId);
         User assignee = userService.getUserById(assigneeId);
@@ -93,6 +98,7 @@ public class AuditTaskService {
     }
 
     @Transactional
+    @org.springframework.cache.annotation.CacheEvict(value = {"tasks", "tasksList", "tasksPaginated"}, allEntries = true)
     public void deleteTask(Long id) {
         AuditTask task = getTaskById(id);
         auditTaskRepository.delete(task);
