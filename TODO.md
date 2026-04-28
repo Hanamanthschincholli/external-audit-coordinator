@@ -1,15 +1,12 @@
-# Security Fixes TODO
+# Fix UserService Compilation Error
 
-[x] 1. Create .env with secrets
-[x] 2. Edit docker-compose.yml (passwords/ports)
-[x] 3. Edit application.yml (env vars)
-[x] 4. Edit JwtUtil.java (env secret)
-[x] 5. Edit RedisConfig.java (password)
-[x] 6. Edit security.md (statuses/typo)
-[x] 7. Update ai-service/requirements.txt
-[ ] 8. Add rate/auth to ai-service/app.py & routes
-[ ] 9. mvn clean test
-[ ] 10. docker-compose up --build
-[ ] 11. Verify frontend login (creds: admin/admin)
-[ ] 12. Curl API tests
+## Plan:
+1. [x] Create `entity/User.java` with JPA annotations, getters/setters
+2. [x] Create `repository/UserRepository.java` extending JpaRepository
+3. [x] Create `service/UserService.java` with `@Service` and `findByUsername`
+4. [x] Fix `controller/AuthController.java` - inject UserService via constructor
+5. [x] Create `db/migration/V2__add_users_table.sql` for Flyway
+6. [x] Run `mvn clean compile` to verify
+7. [ ] Run `mvn spring-boot:run` to verify app starts
+
 
