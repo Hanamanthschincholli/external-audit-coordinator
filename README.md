@@ -57,7 +57,7 @@ This project is part of an AI-based External Audit System. The goal is to build 
 - Fixed persistent ChromaDB storage using `PersistentClient`
 - Tested end-to-end flow using Postman
 
-
+---
 ### ✅ Day 6 – Prompt Tuning & Evaluation
 - Tested prompts against 10 real user inputs
 - Evaluated responses based on accuracy and output format
@@ -66,10 +66,24 @@ This project is part of an AI-based External Audit System. The goal is to build 
 - Re-tested tuned prompts and compared before vs after results
 - Saved evaluation report in `reports/Day6_Prompt_Tuning_Report.xlsx`
 
+---
+### ✅ Day 7 – Health Monitoring API
+- Built GET `/health` endpoint
+- Added system health monitoring response
+- Included model name, average response time, ChromaDB document count
+- Implemented uptime tracking
+- Added cache hit/miss statistics
+- Tested endpoint successfully using Postman
+
+---
+
 ## 🧠 Features
 - Text classification into categories
-- AI-generated responses
-- Semantic search using vector database
+- AI-generated responses using Groq LLM
+- Semantic search using ChromaDB
+- RAG-based query answering with sources
+- Prompt tuning and response evaluation
+- Health monitoring API for service status
 
 ---
 
