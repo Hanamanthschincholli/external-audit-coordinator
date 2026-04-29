@@ -76,7 +76,16 @@ This project is part of an AI-based External Audit System. The goal is to build 
 - Tested endpoint successfully using Postman
 
 ---
+### ✅ Day 8 – Redis AI Cache
+- Implemented AI response caching layer
+- Used SHA256 hash for cache key generation
+- Added 15-minute TTL for cached responses
+- Implemented cache hit and miss counters
+- Added support to skip cache for fresh requests
+- Added graceful fallback to in-memory cache if Redis is unavailable
+- Tested cache miss, cache hit, and fresh request flow successfully in Postman
 
+---
 ## 🧠 Features
 - Text classification into categories
 - AI-generated responses using Groq LLM
