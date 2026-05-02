@@ -1,0 +1,97 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------< com.internship:external-audit-coordinator >--------------
+[INFO] Building External Audit Coordinator 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.2.5:run (default-cli) > test-compile @ external-audit-coordinator >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ external-audit-coordinator ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 5 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ external-audit-coordinator ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 21 source files with javac [debug release 21] to target\classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /c:/Users/hanam/OneDrive/Desktop/fs-java-internship/external-audit-coordinator/backend/src/main/java/com/internship/tool/exception/ErrorResponse.java:[3,14] package lombok does not exist
+[ERROR] /c:/Users/hanam/OneDrive/Desktop/fs-java-internship/external-audit-coordinator/backend/src/main/java/com/internship/tool/exception/ErrorResponse.java:[4,14] package lombok does not exist
+[ERROR] /c:/Users/hanam/OneDrive/Desktop/fs-java-internship/external-audit-coordinator/backend/src/main/java/com/internship/tool/exception/ErrorResponse.java:[8,2] cannot find symbol
+  symbol: class Data
+[ERROR] /c:/Users/hanam/OneDrive/Desktop/fs-java-internship/external-audit-coordinator/backend/src/main/java/com/internship/tool/exception/ErrorResponse.java:[9,2] cannot find symbol
+  symbol: class AllArgsConstructor
+[ERROR] /c:/Users/hanam/OneDrive/Desktop/fs-java-internship/external-audit-coordinator/backend/src/main/java/com/internship/tool/exception/GlobalExceptionHandler.java:[23,31] constructor ErrorResponse in class com.internship.tool.exception.ErrorResponse cannot be applied to given types;
+  required: no arguments
+  found:    java.lang.String,int,java.time.LocalDateTime
+  reason: actual and formal argument lists differ in length
+[ERROR] /c:/Users/hanam/OneDrive/Desktop/fs-java-internship/external-audit-coordinator/backend/src/main/java/com/internship/tool/exception/GlobalExceptionHandler.java:[35,31] constructor ErrorResponse in class com.internship.tool.exception.ErrorResponse cannot be applied to given types;
+  required: no arguments
+  found:    java.lang.String,int,java.time.LocalDateTime
+  reason: actual and formal argument lists differ in length
+[ERROR] /c:/Users/hanam/OneDrive/Desktop/fs-java-internship/external-audit-coordinator/backend/src/main/java/com/internship/tool/exception/GlobalExceptionHandler.java:[47,31] constructor ErrorResponse in class com.internship.tool.exception.ErrorResponse cannot be applied to given types;
+  required: no arguments
+  found:    java.lang.String,int,java.time.LocalDateTime
+  reason: actual and formal argument lists differ in length
+[ERROR] /c:/Users/hanam/OneDrive/Desktop/fs-java-internship/external-audit-coordinator/backend/src/main/java/com/internship/tool/exception/GlobalExceptionHandler.java:[63,31] constructor ErrorResponse in class com.internship.tool.exception.ErrorResponse cannot be applied to given types;
+  required: no arguments
+  found:    java.lang.String,int,java.time.LocalDateTime
+  reason: actual and formal argument lists differ in length
+[ERROR] /c:/Users/hanam/OneDrive/Desktop/fs-java-internship/external-audit-coordinator/backend/src/main/java/com/internship/tool/exception/GlobalExceptionHandler.java:[77,31] constructor ErrorResponse in class com.internship.tool.exception.ErrorResponse cannot be applied to given types;
+  required: no arguments
+  found:    java.lang.String,int,java.time.LocalDateTime
+  reason: actual and formal argument lists differ in length
+[ERROR] /c:/Users/hanam/OneDrive/Desktop/fs-java-internship/external-audit-coordinator/backend/src/main/java/com/internship/tool/exception/GlobalExceptionHandler.java:[89,31] constructor ErrorResponse in class com.internship.tool.exception.ErrorResponse cannot be applied to given types;
+  required: no arguments
+  found:    java.lang.String,int,java.time.LocalDateTime
+  reason: actual and formal argument lists differ in length
+[INFO] 10 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.938 s
+[INFO] Finished at: 2026-04-30T22:00:56+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project external-audit-coordinator: Compilation failure: Compilation failure: 
+[ERROR] /c:/Users/hanam/OneDrive/Desktop/fs-java-internship/external-audit-coordinator/backend/src/main/java/com/internship/tool/exception/ErrorResponse.java:[3,14] package lombok does not exist
+[ERROR] /c:/Users/hanam/OneDrive/Desktop/fs-java-internship/external-audit-coordinator/backend/src/main/java/com/internship/tool/exception/ErrorResponse.java:[4,14] package lombok does not exist
+[ERROR] /c:/Users/hanam/OneDrive/Desktop/fs-java-internship/external-audit-coordinator/backend/src/main/java/com/internship/tool/exception/ErrorResponse.java:[8,2] cannot find symbol
+[ERROR]   symbol: class Data
+[ERROR] /c:/Users/hanam/OneDrive/Desktop/fs-java-internship/external-audit-coordinator/backend/src/main/java/com/internship/tool/exception/ErrorResponse.java:[9,2] cannot find symbol
+[ERROR]   symbol: class AllArgsConstructor
+[ERROR] /c:/Users/hanam/OneDrive/Desktop/fs-java-internship/external-audit-coordinator/backend/src/main/java/com/internship/tool/exception/GlobalExceptionHandler.java:[23,31] constructor ErrorResponse in class com.internship.tool.exception.ErrorResponse cannot be applied to given types;
+[ERROR]   required: no arguments
+[ERROR]   found:    java.lang.String,int,java.time.LocalDateTime
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /c:/Users/hanam/OneDrive/Desktop/fs-java-internship/external-audit-coordinator/backend/src/main/java/com/internship/tool/exception/GlobalExceptionHandler.java:[35,31] constructor ErrorResponse in class com.internship.tool.exception.ErrorResponse cannot be applied to given types;
+[ERROR]   required: no arguments
+[ERROR]   found:    java.lang.String,int,java.time.LocalDateTime
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /c:/Users/hanam/OneDrive/Desktop/fs-java-internship/external-audit-coordinator/backend/src/main/java/com/internship/tool/exception/GlobalExceptionHandler.java:[47,31] constructor ErrorResponse in class com.internship.tool.exception.ErrorResponse cannot be applied to given types;
+[ERROR]   required: no arguments
+[ERROR]   found:    java.lang.String,int,java.time.LocalDateTime
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /c:/Users/hanam/OneDrive/Desktop/fs-java-internship/external-audit-coordinator/backend/src/main/java/com/internship/tool/exception/GlobalExceptionHandler.java:[63,31] constructor ErrorResponse in class com.internship.tool.exception.ErrorResponse cannot be applied to given types;
+[ERROR]   required: no arguments
+[ERROR]   found:    java.lang.String,int,java.time.LocalDateTime
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /c:/Users/hanam/OneDrive/Desktop/fs-java-internship/external-audit-coordinator/backend/src/main/java/com/internship/tool/exception/GlobalExceptionHandler.java:[77,31] constructor ErrorResponse in class com.internship.tool.exception.ErrorResponse cannot be applied to given types;
+[ERROR]   required: no arguments
+[ERROR]   found:    java.lang.String,int,java.time.LocalDateTime
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /c:/Users/hanam/OneDrive/Desktop/fs-java-internship/external-audit-coordinator/backend/src/main/java/com/internship/tool/exception/GlobalExceptionHandler.java:[89,31] constructor ErrorResponse in class com.internship.tool.exception.ErrorResponse cannot be applied to given types;
+[ERROR]   required: no arguments
+[ERROR]   found:    java.lang.String,int,java.time.LocalDateTime
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+
+c:\Users\hanam\OneDrive\Desktop\fs-java-internship\external-audit-coordinator\backend>

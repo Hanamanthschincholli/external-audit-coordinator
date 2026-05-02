@@ -1,0 +1,34 @@
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for com.internship:external-audit-coordinator:jar:0.0.1-SNAPSHOT
+[WARNING] 'parent.relativePath' of POM com.internship:external-audit-coordinator:0.0.1-SNAPSHOT (c:\Users\hanam\OneDrive\Desktop\fs-java-internship\external-audit-coordinator\backend\pom.xml) points at com.internship:external-audit-coordinator-parent instead of org.springframework.boot:spring-boot-starter-parent, please verify your project structure @ line 13, column 9
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO] 
+[INFO] -------------< com.internship:external-audit-coordinator >--------------
+[INFO] Building External Audit Coordinator 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+Downloading from central: https://repo.maven.apache.org/maven2/org/projectlombok/lombok/1.18.33/lombok-1.18.33.pom
+[WARNING] The POM for org.projectlombok:lombok:jar:1.18.33 is missing, no dependency information available
+Downloading from central: https://repo.maven.apache.org/maven2/org/projectlombok/lombok/1.18.33/lombok-1.18.33.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.649 s
+[INFO] Finished at: 2026-05-02T09:53:32+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal on project external-audit-coordinator: Could not resolve dependencies for project com.internship:external-audit-coordinator:jar:0.0.1-SNAPSHOT
+[ERROR] dependency: org.projectlombok:lombok:jar:1.18.33 (compile?)
+[ERROR] 	Could not find artifact org.projectlombok:lombok:jar:1.18.33 in central (https://repo.maven.apache.org/maven2)
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/DependencyResolutionException

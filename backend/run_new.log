@@ -1,0 +1,31 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.5)
+
+2026-05-02T04:31:07.630Z  INFO 37076 --- [  restartedMain] com.internship.tool.Application          : Starting Application using Java 25.0.2 with PID 37076 (c:\Users\hanam\OneDrive\Desktop\fs-java-internship\external-audit-coordinator\backend\target\classes started by hanam in c:\Users\hanam\OneDrive\Desktop\fs-java-internship\external-audit-coordinator\backend)
+2026-05-02T04:31:07.632Z  INFO 37076 --- [  restartedMain] com.internship.tool.Application          : No active profile set, falling back to 1 default profile: "default"
+2026-05-02T04:31:07.714Z  INFO 37076 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-05-02T04:31:07.714Z  INFO 37076 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-05-02T04:31:08.554Z  WARN 37076 --- [  restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.support.BeanDefinitionOverrideException: Invalid bean definition with name 'customOpenAPI' defined in class path resource [com/internship/tool/config/SwaggerConfig.class]: Cannot register bean definition [Root bean: class [null]; scope=; abstract=false; lazyInit=null; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=swaggerConfig; factoryMethodName=customOpenAPI; initMethodNames=null; destroyMethodNames=[(inferred)]; defined in class path resource [com/internship/tool/config/SwaggerConfig.class]] for bean 'customOpenAPI' since there is already [Root bean: class [null]; scope=; abstract=false; lazyInit=null; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=openApiConfig; factoryMethodName=customOpenAPI; initMethodNames=null; destroyMethodNames=[(inferred)]; defined in class path resource [com/internship/tool/config/OpenApiConfig.class]] bound.
+2026-05-02T04:31:08.564Z  INFO 37076 --- [  restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-05-02T04:31:08.609Z ERROR 37076 --- [  restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The bean 'customOpenAPI', defined in class path resource [com/internship/tool/config/SwaggerConfig.class], could not be registered. A bean with that name has already been defined in class path resource [com/internship/tool/config/OpenApiConfig.class] and overriding is disabled.
+
+Action:
+
+Consider renaming one of the beans or enabling overriding by setting spring.main.allow-bean-definition-overriding=true
+

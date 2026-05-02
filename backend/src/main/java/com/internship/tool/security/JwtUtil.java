@@ -7,6 +7,7 @@ import javax.crypto.SecretKey;
 
 import org.springframework.stereotype.Component;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 
@@ -26,5 +27,32 @@ public class JwtUtil {
                 .signWith(key)
                 .compact();
     }
-}
 
+public Claims validateToken(String token) {
+        try {
+            return Jwts.parser()
+                    .verifyWith(key)
+                    .build()
+                    .parseSignedClaims(token)
+                    .getPayload();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public String extractRole(String token) {
+        Claims claims = validateToken(token);
+        if (claims == null) {
+            return null;
+        }
+        String subject = claims.getSubject();
+        if (subject == null) {
+            return null;
+        }
+        int colonIndex = subject.indexOf(':');
+        if (colonIndex == -1) {
+            return null;
+        }
+        return subject.substring(colonIndex + 1);
+    }
+}

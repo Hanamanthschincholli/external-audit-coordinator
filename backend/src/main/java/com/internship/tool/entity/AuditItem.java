@@ -29,9 +29,19 @@ public class AuditItem {
     private LocalDateTime updatedAt;
     private String createdBy;
     private String assignedTo;
-    private boolean isDeleted;
+private boolean isDeleted;
+
+    private String role;
 
     // ===== GETTERS & SETTERS =====
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public UUID getId() {
         return id;
