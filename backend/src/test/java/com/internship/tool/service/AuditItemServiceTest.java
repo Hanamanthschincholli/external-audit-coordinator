@@ -1,5 +1,6 @@
 package com.internship.tool.service;
 
+<<<<<<< HEAD
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -27,6 +28,23 @@ import com.internship.tool.entity.AuditItem;
 import com.internship.tool.repository.AuditItemRepository;
 
 class AuditItemServiceTest {
+=======
+import com.internship.tool.dto.CreateAuditItemRequest;
+import com.internship.tool.entity.AuditItem;
+import com.internship.tool.repository.AuditItemRepository;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+import java.util.Optional;
+import java.util.UUID;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.*;
+
+public class AuditItemServiceTest {
+>>>>>>> c07d053 (Add CI pipline)
 
     @Mock
     private AuditItemRepository auditItemRepository;
@@ -34,13 +52,21 @@ class AuditItemServiceTest {
     @InjectMocks
     private AuditItemService auditItemService;
 
+<<<<<<< HEAD
     @BeforeEach
     void setUp() {
+=======
+    public AuditItemServiceTest() {
+>>>>>>> c07d053 (Add CI pipline)
         MockitoAnnotations.openMocks(this);
     }
 
     @Test
     void shouldCreateAuditItem() {
+<<<<<<< HEAD
+=======
+
+>>>>>>> c07d053 (Add CI pipline)
         CreateAuditItemRequest request = new CreateAuditItemRequest();
         request.setTitle("Test");
         request.setStatus("OPEN");
@@ -52,8 +78,12 @@ class AuditItemServiceTest {
 
         when(auditItemRepository.save(any(AuditItem.class))).thenReturn(savedItem);
 
+<<<<<<< HEAD
         // ✅ FIXED: pass UUID, not String
         var result = auditItemService.createAuditItem(request, UUID.randomUUID());
+=======
+        var result = auditItemService.createAuditItem(request, "USER1");
+>>>>>>> c07d053 (Add CI pipline)
 
         assertThat(result.getTitle()).isEqualTo("Test");
         verify(auditItemRepository, times(1)).save(any(AuditItem.class));
@@ -61,6 +91,10 @@ class AuditItemServiceTest {
 
     @Test
     void shouldGetAuditItemById() {
+<<<<<<< HEAD
+=======
+
+>>>>>>> c07d053 (Add CI pipline)
         UUID id = UUID.randomUUID();
 
         AuditItem item = new AuditItem();
@@ -74,6 +108,7 @@ class AuditItemServiceTest {
 
         assertThat(result.getId()).isEqualTo(id);
     }
+<<<<<<< HEAD
 
     @Test
     void shouldThrowExceptionWhenItemNotFound() {
@@ -173,4 +208,6 @@ class AuditItemServiceTest {
 
         assertThat(result.getContent()).hasSize(1);
     }
+=======
+>>>>>>> c07d053 (Add CI pipline)
 }

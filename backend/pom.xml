@@ -54,7 +54,6 @@
             <artifactId>flyway-core</artifactId>
         </dependency>
 
-<<<<<<< HEAD
         <!-- Lombok (optional but useful) -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -62,8 +61,6 @@
             <optional>true</optional>
         </dependency>
 
-=======
->>>>>>> 71524aa (Implement JWT authentication and role-based access control)
         <!-- Dev Tools (auto reload) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -118,7 +115,4 @@
     </build>
 
 </project>
-<<<<<<< HEAD
-=======
 
->>>>>>> 71524aa (Implement JWT authentication and role-based access control)
