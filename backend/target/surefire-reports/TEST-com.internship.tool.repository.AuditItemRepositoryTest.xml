@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.internship.tool.service.AuditItemServiceTest" time="0.224" tests="8" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.internship.tool.repository.AuditItemRepositoryTest" time="6.938" tests="3" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -65,36 +65,57 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="shouldGetAuditItemById" classname="com.internship.tool.service.AuditItemServiceTest" time="0.151">
-    <system-out><![CDATA[2026-05-03T12:36:57.462+05:30  INFO 6960 --- [           main] c.i.tool.service.AuditItemService        : Fetching audit item with id: d07f5aa2-a065-41e5-a370-76209cf6659d
+  <testcase name="shouldFindByFilters" classname="com.internship.tool.repository.AuditItemRepositoryTest" time="0.477">
+    <system-out><![CDATA[12:36:50.500 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.internship.tool.repository.AuditItemRepositoryTest]: AuditItemRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+12:36:50.790 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.internship.tool.Application for test class com.internship.tool.repository.AuditItemRepositoryTest
+12:36:50.951 [main] INFO org.springframework.boot.devtools.restart.RestartApplicationListener -- Restart disabled due to context in which it is running
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.5)
+
+2026-05-03T12:36:51.572+05:30  INFO 6960 --- [           main] c.i.t.r.AuditItemRepositoryTest          : Starting AuditItemRepositoryTest using Java 25.0.2 with PID 6960 (started by hanam in C:\Users\hanam\OneDrive\Desktop\fs-java-internship\external-audit-coordinator\backend)
+2026-05-03T12:36:51.574+05:30 DEBUG 6960 --- [           main] c.i.t.r.AuditItemRepositoryTest          : Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-05-03T12:36:51.575+05:30  INFO 6960 --- [           main] c.i.t.r.AuditItemRepositoryTest          : The following 1 profile is active: "test"
+2026-05-03T12:36:52.131+05:30  INFO 6960 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-05-03T12:36:52.133+05:30  INFO 6960 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-03T12:36:52.221+05:30  INFO 6960 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 75 ms. Found 2 JPA repository interfaces.
+2026-05-03T12:36:52.304+05:30  INFO 6960 --- [           main] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
+2026-05-03T12:36:52.599+05:30  INFO 6960 --- [           main] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:3974a17c-6fa2-4439-a59d-8213eafbd877;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2026-05-03T12:36:53.094+05:30  INFO 6960 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-05-03T12:36:53.201+05:30  INFO 6960 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-05-03T12:36:53.270+05:30  INFO 6960 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-05-03T12:36:53.539+05:30  INFO 6960 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-03T12:36:53.676+05:30  WARN 6960 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-03T12:36:55.054+05:30  INFO 6960 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: drop table if exists audit_item cascade 
+Hibernate: drop table if exists users cascade 
+Hibernate: create table audit_item (due_date date, is_deleted boolean not null, created_at timestamp(6), updated_at timestamp(6), id uuid not null, assigned_to varchar(255), created_by varchar(255), description varchar(255), priority varchar(255), role varchar(255), status varchar(255), title varchar(255), primary key (id))
+Hibernate: create table users (id uuid not null, password varchar(255) not null, role varchar(255) not null, username varchar(255) not null unique, primary key (id))
+2026-05-03T12:36:55.111+05:30  INFO 6960 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-03T12:36:55.676+05:30  INFO 6960 --- [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-03T12:36:56.719+05:30  INFO 6960 --- [           main] c.i.t.r.AuditItemRepositoryTest          : Started AuditItemRepositoryTest in 5.789 seconds (process running for 10.635)
+Hibernate: insert into audit_item (assigned_to,created_at,created_by,description,due_date,is_deleted,priority,role,status,title,updated_at,id) values (?,?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: insert into audit_item (assigned_to,created_at,created_by,description,due_date,is_deleted,priority,role,status,title,updated_at,id) values (?,?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: insert into audit_item (assigned_to,created_at,created_by,description,due_date,is_deleted,priority,role,status,title,updated_at,id) values (?,?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: select ai1_0.id,ai1_0.assigned_to,ai1_0.created_at,ai1_0.created_by,ai1_0.description,ai1_0.due_date,ai1_0.is_deleted,ai1_0.priority,ai1_0.role,ai1_0.status,ai1_0.title,ai1_0.updated_at from audit_item ai1_0 where ai1_0.is_deleted=false and (? is null or lower(ai1_0.title) like lower(?) escape '') and (? is null or ai1_0.status=?) and (? is null or ai1_0.priority=?) and (? is null or ai1_0.assigned_to=?) offset ? rows fetch first ? rows only
 ]]></system-out>
   </testcase>
-  <testcase name="shouldGetByStatus" classname="com.internship.tool.service.AuditItemServiceTest" time="0.005">
-    <system-out><![CDATA[2026-05-03T12:36:57.472+05:30  INFO 6960 --- [           main] c.i.tool.service.AuditItemService        : Fetching audit items by status: OPEN
+  <testcase name="shouldFindActiveByStatus" classname="com.internship.tool.repository.AuditItemRepositoryTest" time="0.022">
+    <system-out><![CDATA[Hibernate: insert into audit_item (assigned_to,created_at,created_by,description,due_date,is_deleted,priority,role,status,title,updated_at,id) values (?,?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: insert into audit_item (assigned_to,created_at,created_by,description,due_date,is_deleted,priority,role,status,title,updated_at,id) values (?,?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: insert into audit_item (assigned_to,created_at,created_by,description,due_date,is_deleted,priority,role,status,title,updated_at,id) values (?,?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: select ai1_0.id,ai1_0.assigned_to,ai1_0.created_at,ai1_0.created_by,ai1_0.description,ai1_0.due_date,ai1_0.is_deleted,ai1_0.priority,ai1_0.role,ai1_0.status,ai1_0.title,ai1_0.updated_at from audit_item ai1_0 where ai1_0.is_deleted=false and ai1_0.status=? offset ? rows fetch first ? rows only
 ]]></system-out>
   </testcase>
-  <testcase name="shouldUpdateAuditItem" classname="com.internship.tool.service.AuditItemServiceTest" time="0.014">
-    <system-out><![CDATA[2026-05-03T12:36:57.479+05:30  INFO 6960 --- [           main] c.i.tool.service.AuditItemService        : Updating audit item with id: 03c71a12-2198-4ace-928d-9fbacde45a08
-]]></system-out>
-  </testcase>
-  <testcase name="shouldSearchAuditItems" classname="com.internship.tool.service.AuditItemServiceTest" time="0.012">
-    <system-out><![CDATA[2026-05-03T12:36:57.503+05:30  INFO 6960 --- [           main] c.i.tool.service.AuditItemService        : Searching audit items with filters
-]]></system-out>
-  </testcase>
-  <testcase name="shouldThrowExceptionWhenItemNotFound" classname="com.internship.tool.service.AuditItemServiceTest" time="0.008">
-    <system-out><![CDATA[2026-05-03T12:36:57.510+05:30  INFO 6960 --- [           main] c.i.tool.service.AuditItemService        : Fetching audit item with id: 954a58d6-b01a-4bb2-9577-2929284ebfec
-]]></system-out>
-  </testcase>
-  <testcase name="shouldGetAllAuditItems" classname="com.internship.tool.service.AuditItemServiceTest" time="0.005">
-    <system-out><![CDATA[2026-05-03T12:36:57.518+05:30  INFO 6960 --- [           main] c.i.tool.service.AuditItemService        : Fetching all audit items
-]]></system-out>
-  </testcase>
-  <testcase name="shouldCreateAuditItem" classname="com.internship.tool.service.AuditItemServiceTest" time="0.004">
-    <system-out><![CDATA[2026-05-03T12:36:57.522+05:30  INFO 6960 --- [           main] c.i.tool.service.AuditItemService        : Creating audit item with title: Test
-]]></system-out>
-  </testcase>
-  <testcase name="shouldSoftDeleteAuditItem" classname="com.internship.tool.service.AuditItemServiceTest" time="0.008">
-    <system-out><![CDATA[2026-05-03T12:36:57.532+05:30  INFO 6960 --- [           main] c.i.tool.service.AuditItemService        : Deleting audit item with id: 1d54ea85-7037-4985-944b-4e2817060cf7
+  <testcase name="shouldSoftDeleteById" classname="com.internship.tool.repository.AuditItemRepositoryTest" time="0.057">
+    <system-out><![CDATA[Hibernate: insert into audit_item (assigned_to,created_at,created_by,description,due_date,is_deleted,priority,role,status,title,updated_at,id) values (?,?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: update audit_item set is_deleted=true where id=?
+Hibernate: select ai1_0.id,ai1_0.assigned_to,ai1_0.created_at,ai1_0.created_by,ai1_0.description,ai1_0.due_date,ai1_0.is_deleted,ai1_0.priority,ai1_0.role,ai1_0.status,ai1_0.title,ai1_0.updated_at from audit_item ai1_0 where ai1_0.id=?
 ]]></system-out>
   </testcase>
 </testsuite>

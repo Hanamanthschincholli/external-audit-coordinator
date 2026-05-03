@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.internship.tool.service.AuditItemServiceTest" time="0.224" tests="8" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.internship.tool.controller.AuditItemControllerTest" time="3.178" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -10,7 +10,6 @@
     <property name="user.variant" value=""/>
     <property name="java.vendor.url" value="https://adoptium.net/"/>
     <property name="user.timezone" value="Asia/Calcutta"/>
-    <property name="org.jboss.logging.provider" value="slf4j"/>
     <property name="os.name" value="Windows 11"/>
     <property name="java.vm.specification.version" value="25"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
@@ -31,8 +30,6 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="FILE_LOG_CHARSET" value="UTF-8"/>
-    <property name="java.awt.headless" value="true"/>
     <property name="surefire.real.class.path" value="C:\Users\hanam\AppData\Local\Temp\surefire3143766511527216425\surefirebooter-20260503123645545_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
@@ -52,9 +49,7 @@
     <property name="user.dir" value="C:\Users\hanam\OneDrive\Desktop\fs-java-internship\external-audit-coordinator\backend"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="PID" value="6960"/>
     <property name="sun.os.patch.level" value=""/>
-    <property name="CONSOLE_LOG_CHARSET" value="UTF-8"/>
     <property name="native.encoding" value="Cp1252"/>
     <property name="java.library.path" value="C:\Users\hanam\Downloads\OpenJDK25U-jdk_x64_windows_hotspot_25.0.2_10\jdk-25.0.2+10\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;c:\Users\hanam\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\debugCommand;c:\Users\hanam\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\copilotCli;C:\Python313\Scripts\;C:\Python313\;C:\Program Files\Eclipse Adoptium\jdk-21.0.8.9-hotspot\bin;C:\Program Files\Eclipse Adoptium\jre-21.0.8.9-hotspot\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\MongoDB\Server\8.0\bin;C:\Program Files\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;C:\Users\hanam\Downloads\apache-maven-3.9.15-bin\apache-maven-3.9.15\bin;C:\Users\hanam\Downloads\OpenJDK25U-jdk_x64_windows_hotspot_25.0.2_10\jdk-25.0.2+10\bin;C:\Users\hanam\AppData\Local\Microsoft\WindowsApps;C:\Users\hanam\AppData\Roaming\npm;C:\Program Files\mongosh\;C:\Users\hanam\AppData\Local\Programs\cursor\resources\app\bin;C:\Program Files\JetBrains\IntelliJ IDEA 2025.3.2\bin;c:\Users\hanam\.vscode\extensions\vscjava.vscode-java-debug-0.59.0\bundled\scripts\noConfigScripts;."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
@@ -65,36 +60,11 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="shouldGetAuditItemById" classname="com.internship.tool.service.AuditItemServiceTest" time="0.151">
-    <system-out><![CDATA[2026-05-03T12:36:57.462+05:30  INFO 6960 --- [           main] c.i.tool.service.AuditItemService        : Fetching audit item with id: d07f5aa2-a065-41e5-a370-76209cf6659d
-]]></system-out>
-  </testcase>
-  <testcase name="shouldGetByStatus" classname="com.internship.tool.service.AuditItemServiceTest" time="0.005">
-    <system-out><![CDATA[2026-05-03T12:36:57.472+05:30  INFO 6960 --- [           main] c.i.tool.service.AuditItemService        : Fetching audit items by status: OPEN
-]]></system-out>
-  </testcase>
-  <testcase name="shouldUpdateAuditItem" classname="com.internship.tool.service.AuditItemServiceTest" time="0.014">
-    <system-out><![CDATA[2026-05-03T12:36:57.479+05:30  INFO 6960 --- [           main] c.i.tool.service.AuditItemService        : Updating audit item with id: 03c71a12-2198-4ace-928d-9fbacde45a08
-]]></system-out>
-  </testcase>
-  <testcase name="shouldSearchAuditItems" classname="com.internship.tool.service.AuditItemServiceTest" time="0.012">
-    <system-out><![CDATA[2026-05-03T12:36:57.503+05:30  INFO 6960 --- [           main] c.i.tool.service.AuditItemService        : Searching audit items with filters
-]]></system-out>
-  </testcase>
-  <testcase name="shouldThrowExceptionWhenItemNotFound" classname="com.internship.tool.service.AuditItemServiceTest" time="0.008">
-    <system-out><![CDATA[2026-05-03T12:36:57.510+05:30  INFO 6960 --- [           main] c.i.tool.service.AuditItemService        : Fetching audit item with id: 954a58d6-b01a-4bb2-9577-2929284ebfec
-]]></system-out>
-  </testcase>
-  <testcase name="shouldGetAllAuditItems" classname="com.internship.tool.service.AuditItemServiceTest" time="0.005">
-    <system-out><![CDATA[2026-05-03T12:36:57.518+05:30  INFO 6960 --- [           main] c.i.tool.service.AuditItemService        : Fetching all audit items
-]]></system-out>
-  </testcase>
-  <testcase name="shouldCreateAuditItem" classname="com.internship.tool.service.AuditItemServiceTest" time="0.004">
-    <system-out><![CDATA[2026-05-03T12:36:57.522+05:30  INFO 6960 --- [           main] c.i.tool.service.AuditItemService        : Creating audit item with title: Test
-]]></system-out>
-  </testcase>
-  <testcase name="shouldSoftDeleteAuditItem" classname="com.internship.tool.service.AuditItemServiceTest" time="0.008">
-    <system-out><![CDATA[2026-05-03T12:36:57.532+05:30  INFO 6960 --- [           main] c.i.tool.service.AuditItemService        : Deleting audit item with id: 1d54ea85-7037-4985-944b-4e2817060cf7
+  <testcase name="shouldCreateAuditItem" classname="com.internship.tool.controller.AuditItemControllerTest" time="3.126">
+    <system-out><![CDATA[12:36:48.513 [main] INFO org.hibernate.validator.internal.util.Version -- HV000001: Hibernate Validator 8.0.1.Final
+12:36:49.805 [main] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+12:36:49.805 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+12:36:49.810 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 4 ms
 ]]></system-out>
   </testcase>
 </testsuite>
