@@ -91,7 +91,6 @@ public class AuditItemService {
         return AuditItemMapper.toDTO(saved);
     }
 
-
     @Cacheable("auditItems")
     public Page<AuditItemDTO> getAllAuditItems(Pageable pageable) {
         logger.info("Fetching all audit items");
@@ -118,8 +117,6 @@ public class AuditItemService {
 
         return auditItemRepository.findAll(pageable)
                 .map(this::mapToDTO);
-               .map(AuditItemMapper::toDTO);
-
     }
 
     // ✅ SEARCH
@@ -145,7 +142,6 @@ public class AuditItemService {
                 .orElseThrow(() -> new RuntimeException("Audit item not found"));
     }
 
-
     @CacheEvict(value = "auditItems", allEntries = true)
     public AuditItemDTO updateAuditItem(UUID id, CreateAuditItemRequest request, UUID updatedById) {
         logger.info("Updating audit item with id: {}", id);
@@ -153,11 +149,6 @@ public class AuditItemService {
     // CACHE CLEAR ON UPDATE
     @CacheEvict(value = "auditItems", allEntries = true)
     public AuditItemDTO updateAuditItem(UUID id, CreateAuditItemRequest request, String updatedBy) {
-    // ✅ UPDATE
-    @CacheEvict(value = "auditItems", allEntries = true)
-    public AuditItemDTO updateAuditItem(UUID id, CreateAuditItemRequest request, String updatedBy) {
-        logger.info("Updating audit item with id: {}", id);
-
         AuditItem item = auditItemRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Audit item not found"));
 
@@ -181,11 +172,7 @@ public class AuditItemService {
         return AuditItemMapper.toDTO(saved);
     }
 
-
     //  CACHE CLEAR ON DELETE
-
-    // ✅ DELETE
-
     @CacheEvict(value = "auditItems", allEntries = true)
     public void deleteAuditItem(UUID id) {
         logger.info("Deleting audit item with id: {}", id);
@@ -203,7 +190,7 @@ public class AuditItemService {
 
         return auditItemRepository.findActiveByStatus(status, pageable)
                 .map(AuditItemMapper::toDTO);
-    }
+    
 }
 
-}
+

@@ -43,19 +43,23 @@ public interface AuditItemRepository extends JpaRepository<AuditItem, UUID> {
            "AND (:titlePattern IS NULL OR LOWER(a.title) LIKE LOWER(:titlePattern)) " +
            "AND (:status IS NULL OR a.status = :status) " +
            "AND (:priority IS NULL OR a.priority = :priority) " +
- "AND (:assignedTo IS NULL OR a.assignedTo.id = :assignedTo)")
-    Page<AuditItem> findByFilters(
+           "AND (:assignedTo IS NULL OR a.assignedTo.id = :assignedTo)")
+        Page<AuditItem> findByFilters(
             @Param("titlePattern") String titlePattern,
             @Param("status") String status,
             @Param("priority") String priority,
-@Param("assignedTo") UUID assignedTo,
+    @Param("assignedTo") UUID assignedTo,
             Pageable pageable);
 
     // ✅ Fixed here also
     @Transactional
     @Modifying
-    @Query("UPDATE AuditItem a SET a.deleted = true WHERE a.id = :id")
     void softDeleteById(@Param("id") UUID id);
 }
 
+
+        @Modifying
+        void softDeleteById(@Param("id") UUID id);
+
+}
 
