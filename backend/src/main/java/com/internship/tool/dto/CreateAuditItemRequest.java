@@ -1,5 +1,7 @@
 package com.internship.tool.dto;
 
+import java.util.UUID;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
@@ -21,7 +23,7 @@ public class CreateAuditItemRequest {
     )
     private String dueDate;
 
-    private String assignedTo;
+    private UUID assignedTo;
 
     public String getTitle() {
         return title;
@@ -63,11 +65,12 @@ public class CreateAuditItemRequest {
         this.dueDate = dueDate;
     }
 
-    public String getAssignedTo() {
+    public UUID getAssignedTo() {
         return assignedTo;
     }
 
-    public void setAssignedTo(String assignedTo) {
+    public void setAssignedTo(UUID assignedTo) {
         this.assignedTo = assignedTo;
     }
 }
+

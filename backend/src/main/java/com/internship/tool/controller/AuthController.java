@@ -28,23 +28,36 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginRequest request) {
 
-        return userService.findByUsername(request.getUsername())
-                .map(user -> {
-                    String storedPassword = user.getPassword();
-                    boolean matches = passwordEncoder.matches(request.getPassword(), storedPassword)
-                            || request.getPassword().equals(storedPassword);
+        String loginInput = request.getUsername();
 
-                    if (matches) {
-                        String token = jwtUtil.generateToken(
-                                user.getUsername() + ":" + user.getRole()
-                        );
+        return userService.findByUsername(loginInput)
+                .map(user -> validatePasswordAndGenerateToken(user, request.getPassword()))
+                .orElseGet(() -> userService.findByEmail(loginInput)
+                        .map(user -> validatePasswordAndGenerateToken(user, request.getPassword()))
+                        .orElse(ResponseEntity.status(401).body("User not found")));
+    }
 
-                        return ResponseEntity.ok(token);
-                    } else {
-                        return ResponseEntity.status(401).body("Invalid password");
-                    }
-                })
-                .orElse(ResponseEntity.status(401).body("User not found"));
+    private ResponseEntity<String> validatePasswordAndGenerateToken(
+            com.internship.tool.entity.User user,
+            String rawPassword) {
+
+        String storedPassword = user.getPasswordHash();
+        boolean matches = passwordEncoder.matches(rawPassword, storedPassword)
+                || rawPassword.equals(storedPassword);
+
+        if (!matches) {
+            return ResponseEntity.status(401).body("Invalid password");
+        }
+
+        String subject = (user.getUsername() != null && !user.getUsername().isBlank())
+                ? user.getUsername()
+                : user.getEmail();
+
+        String token = jwtUtil.generateToken(
+                subject + ":" + user.getRole()
+        );
+
+        return ResponseEntity.ok(token);
     }
 }
 

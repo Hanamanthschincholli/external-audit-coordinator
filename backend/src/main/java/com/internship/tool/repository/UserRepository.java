@@ -1,5 +1,6 @@
 package com.internship.tool.repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -12,6 +13,11 @@ import com.internship.tool.entity.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, UUID> {
-    @Query("SELECT u FROM User u WHERE LOWER(TRIM(username)) = LOWER(TRIM(:username))")
-    Optional<User> findByUsernameIgnoreCase(@Param("username") String username);
+
+    Optional<User> findByEmail(String email);
+
+    Optional<User> findByUsernameIgnoreCase(String username);
+
+@Query("SELECT u FROM User u WHERE LOWER(u.username) LIKE LOWER(CONCAT('%', :username, '%')) OR LOWER(u.email) LIKE LOWER(CONCAT('%', :email, '%'))")
+    List<User> findByUsernameContainingIgnoreCaseOrEmailContainingIgnoreCase(@Param("username") String username, @Param("email") String email);
 }

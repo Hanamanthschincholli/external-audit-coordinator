@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import com.internship.tool.dto.AuditItemDTO;
 import com.internship.tool.dto.CreateAuditItemRequest;
 import com.internship.tool.entity.AuditItem;
+import com.internship.tool.entity.User;
 import com.internship.tool.mapper.AuditItemMapper;
 import com.internship.tool.repository.AuditItemRepository;
 
@@ -23,18 +24,21 @@ import com.internship.tool.repository.AuditItemRepository;
 public class AuditItemService {
 
     private final AuditItemRepository auditItemRepository;
+    private final UserService userService;
 
     private static final Logger logger = LoggerFactory.getLogger(AuditItemService.class);
 
     @Autowired
-    public AuditItemService(AuditItemRepository auditItemRepository) {
+    public AuditItemService(AuditItemRepository auditItemRepository, UserService userService) {
         this.auditItemRepository = auditItemRepository;
+        this.userService = userService;
     }
 
-    // ✅ CREATE
-    @CacheEvict(value = "auditItems", allEntries = true)
-    public AuditItemDTO createAuditItem(CreateAuditItemRequest request, String createdBy) {
+    public AuditItemDTO createAuditItem(CreateAuditItemRequest request, UUID createdById) {
         logger.info("Creating audit item with title: {}", request.getTitle());
+
+        User createdUser = userService.getUserById(createdById);
+        User assignedUser = request.getAssignedTo() != null ? userService.getUserById(request.getAssignedTo()) : null;
 
         AuditItem item = new AuditItem();
         item.setTitle(request.getTitle());
@@ -47,15 +51,14 @@ public class AuditItemService {
             item.setDueDate(dueDate);
         }
 
-        item.setCreatedBy(createdBy);
-        item.setAssignedTo(request.getAssignedTo());
+        item.setCreatedBy(createdUser);
+        item.setAssignedTo(assignedUser);
         item.setDeleted(false);
 
         AuditItem saved = auditItemRepository.save(item);
         return AuditItemMapper.toDTO(saved);
     }
 
-    // ✅ GET ALL
     @Cacheable("auditItems")
     public Page<AuditItemDTO> getAllAuditItems(Pageable pageable) {
         logger.info("Fetching all audit items");
@@ -64,12 +67,11 @@ public class AuditItemService {
                 .map(AuditItemMapper::toDTO);
     }
 
-    // ✅ SEARCH
     public Page<AuditItemDTO> searchAuditItems(Pageable pageable,
                                                String title,
                                                String status,
                                                String priority,
-                                               String assignedTo) {
+                                               UUID assignedTo) {
 
         logger.info("Searching audit items with filters");
 
@@ -77,7 +79,6 @@ public class AuditItemService {
                 .map(AuditItemMapper::toDTO);
     }
 
-    // ✅ GET BY ID
     public AuditItemDTO getAuditItemById(UUID id) {
         logger.info("Fetching audit item with id: {}", id);
 
@@ -87,9 +88,8 @@ public class AuditItemService {
                 .orElseThrow(() -> new RuntimeException("Audit item not found"));
     }
 
-    // ✅ UPDATE
     @CacheEvict(value = "auditItems", allEntries = true)
-    public AuditItemDTO updateAuditItem(UUID id, CreateAuditItemRequest request, String updatedBy) {
+    public AuditItemDTO updateAuditItem(UUID id, CreateAuditItemRequest request, UUID updatedById) {
         logger.info("Updating audit item with id: {}", id);
 
         AuditItem item = auditItemRepository.findById(id)
@@ -105,20 +105,21 @@ public class AuditItemService {
             item.setDueDate(dueDate);
         }
 
-        item.setAssignedTo(request.getAssignedTo());
+        if (request.getAssignedTo() != null) {
+            User assignedUser = userService.getUserById(request.getAssignedTo());
+            item.setAssignedTo(assignedUser);
+        }
 
         AuditItem saved = auditItemRepository.save(item);
         return AuditItemMapper.toDTO(saved);
     }
 
-    // ✅ DELETE
     @CacheEvict(value = "auditItems", allEntries = true)
     public void deleteAuditItem(UUID id) {
         logger.info("Deleting audit item with id: {}", id);
         auditItemRepository.softDeleteById(id);
     }
 
-    // ✅ FILTER BY STATUS
     public Page<AuditItemDTO> getByStatus(String status, Pageable pageable) {
         logger.info("Fetching audit items by status: {}", status);
 
@@ -126,3 +127,4 @@ public class AuditItemService {
                 .map(AuditItemMapper::toDTO);
     }
 }
+

@@ -1,27 +1,30 @@
 package com.internship.tool.service;
 
-import com.internship.tool.dto.AuditItemDTO;
-import com.internship.tool.dto.CreateAuditItemRequest;
-import com.internship.tool.entity.AuditItem;
-import com.internship.tool.repository.AuditItemRepository;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
-
-import static org.assertj.core.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.*;
+import com.internship.tool.dto.CreateAuditItemRequest;
+import com.internship.tool.entity.AuditItem;
+import com.internship.tool.repository.AuditItemRepository;
 
 class AuditItemServiceTest {
 
@@ -49,7 +52,8 @@ class AuditItemServiceTest {
 
         when(auditItemRepository.save(any(AuditItem.class))).thenReturn(savedItem);
 
-        var result = auditItemService.createAuditItem(request, "USER1");
+        // ✅ FIXED: pass UUID, not String
+        var result = auditItemService.createAuditItem(request, UUID.randomUUID());
 
         assertThat(result.getTitle()).isEqualTo("Test");
         verify(auditItemRepository, times(1)).save(any(AuditItem.class));
@@ -98,7 +102,8 @@ class AuditItemServiceTest {
         when(auditItemRepository.findById(id)).thenReturn(Optional.of(existing));
         when(auditItemRepository.save(any())).thenReturn(saved);
 
-        var result = auditItemService.updateAuditItem(id, request, "USER1");
+        // ✅ FIXED: pass UUID
+        var result = auditItemService.updateAuditItem(id, request, UUID.randomUUID());
 
         assertThat(result.getTitle()).isEqualTo("Updated");
         verify(auditItemRepository, times(1)).save(any());
@@ -148,25 +153,24 @@ class AuditItemServiceTest {
     }
 
     @Test
-void shouldSearchAuditItems() {
-    Pageable pageable = PageRequest.of(0, 10);
+    void shouldSearchAuditItems() {
+        Pageable pageable = PageRequest.of(0, 10);
 
-    AuditItem item = new AuditItem();
-    item.setTitle("Search Test");
-    item.setStatus("OPEN");
-    item.setDeleted(false);
+        AuditItem item = new AuditItem();
+        item.setTitle("Search Test");
+        item.setStatus("OPEN");
+        item.setDeleted(false);
 
-    Page<AuditItem> page = new PageImpl<>(List.of(item), pageable, 1);
+        Page<AuditItem> page = new PageImpl<>(List.of(item), pageable, 1);
 
-    // ✅ Use flexible matchers instead of exact eq()
-    when(auditItemRepository.findByFilters(
-            any(), any(), any(), any(), any(Pageable.class)
-    )).thenReturn(page);
+        when(auditItemRepository.findByFilters(
+                any(), any(), any(), any(), any(Pageable.class)
+        )).thenReturn(page);
 
-    var result = auditItemService.searchAuditItems(
-            pageable, "Search Test", "OPEN", null, null
-    );
+        var result = auditItemService.searchAuditItems(
+                pageable, "Search Test", "OPEN", null, null
+        );
 
-    assertThat(result.getContent()).hasSize(1);
-}
+        assertThat(result.getContent()).hasSize(1);
+    }
 }

@@ -9,7 +9,7 @@ public class AuditItemMapper {
         // Prevent instantiation
     }
 
-    // ✅ ENTITY → DTO
+    // ENTITY → DTO
     public static AuditItemDTO toDTO(AuditItem item) {
         if (item == null) {
             return null;
@@ -24,14 +24,15 @@ public class AuditItemMapper {
         dto.setPriority(item.getPriority());
 
         if (item.getDueDate() != null) {
-            dto.setDueDate(item.getDueDate().atStartOfDay());
+            dto.setDueDate(item.getDueDate());
         }
 
         dto.setCreatedAt(item.getCreatedAt());
         dto.setUpdatedAt(item.getUpdatedAt());
-        dto.setCreatedBy(item.getCreatedBy());
-        dto.setAssignedTo(item.getAssignedTo());
+        dto.setCreatedBy(item.getCreatedBy() != null ? item.getCreatedBy().getUsername() : null);
+        dto.setAssignedTo(item.getAssignedTo() != null ? item.getAssignedTo().getUsername() : null);
 
         return dto;
     }
 }
+

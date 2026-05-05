@@ -16,29 +16,29 @@ import com.internship.tool.entity.AuditItem;
 @Repository
 public interface AuditItemRepository extends JpaRepository<AuditItem, UUID> {
 
-    // Soft delete filter - active items only
-    @Query("SELECT a FROM AuditItem a WHERE a.isDeleted = false")
+    // ✅ Fixed: deleted instead of isDeleted
+    @Query("SELECT a FROM AuditItem a WHERE a.deleted = false")
     Page<AuditItem> findAllActive(Pageable pageable);
 
-    @Query("SELECT a FROM AuditItem a WHERE a.isDeleted = false AND a.status = :status")
+    @Query("SELECT a FROM AuditItem a WHERE a.deleted = false AND a.status = :status")
     Page<AuditItem> findActiveByStatus(@Param("status") String status, Pageable pageable);
 
-// Dynamic search/filter method - title is passed as pattern already wrapped with %
-    @Query("SELECT a FROM AuditItem a WHERE a.isDeleted = false " +
+    // ✅ Fixed here also
+    @Query("SELECT a FROM AuditItem a WHERE a.deleted = false " +
            "AND (:titlePattern IS NULL OR LOWER(a.title) LIKE LOWER(:titlePattern)) " +
            "AND (:status IS NULL OR a.status = :status) " +
            "AND (:priority IS NULL OR a.priority = :priority) " +
-           "AND (:assignedTo IS NULL OR a.assignedTo = :assignedTo)")
+ "AND (:assignedTo IS NULL OR a.assignedTo.id = :assignedTo)")
     Page<AuditItem> findByFilters(
             @Param("titlePattern") String titlePattern,
             @Param("status") String status,
             @Param("priority") String priority,
-            @Param("assignedTo") String assignedTo,
+@Param("assignedTo") UUID assignedTo,
             Pageable pageable);
 
+    // ✅ Fixed here also
     @Transactional
     @Modifying
-    @Query("UPDATE AuditItem a SET a.isDeleted = true WHERE a.id = :id")
+    @Query("UPDATE AuditItem a SET a.deleted = true WHERE a.id = :id")
     void softDeleteById(@Param("id") UUID id);
-
 }
